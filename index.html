@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>switchButtonGroup</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="switchButtonGroup.js"></script>
+<div id="btnGroup"></div>
+<button id="btn">选中"Middle"</button>
+<button id="btn2">选中第三个</button>
+<script>
+    $("#btn").on("click",function(){
+        $("#btnGroup").switchButtonGroup("check","Middle");
+    });
+    $("#btn2").on("click",function(){
+        $("#btnGroup").switchButtonGroup("checkByIndex",2);
+    });
+    $("#btnGroup").switchButtonGroup({
+        "data":[{
+            text:"Left"
+        },{
+            text:"Middle"
+        },{
+            text:"Right"
+        }],
+        "formatter":function(item){
+            return item.text;
+        },
+        "onChecked":function(item){
+            console.log(item);
+            console.log(this.switchButtonGroup("getChecked"));
+        },
+        "doCheck":function(keyword,item){
+            if(keyword==item.text){
+                return true;
+            }
+        }
+    });
+</script>
+</body>
+</html>
